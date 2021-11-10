@@ -1,0 +1,28 @@
+<div class="movie-slide">
+    <swiper [config]="config">
+        <ng-container *ngFor="let slide of movies; let i = index">
+            <ng-template swiperSlide let-data>
+                <img [src]="env.originalImage(slide.backdrop_path)">
+                <div class="movie-slide__combine">
+                    <div class="movie-slide__item {{data.isActive ? 'active' : ''}}" [ngStyle]="bgImg(slide)">
+                        <div class="movie-slide__item__content container">
+                            <div class="movie-slide__item__content__info">
+                                <h2 class="title">{{ slide.title }}</h2>
+                                <div class="overview">{{ slide.overview }}</div>
+                                <div class="btns">
+                                    <custom-button btnClass="btn" btnName="Watch Now"></custom-button>
+                                    <custom-button btnClass="btn btn-outline" btnName="Watch Trailer" (click)="showModal(slide.id)"></custom-button>
+                                </div>
+                            </div>
+                            <div class="movie-slide__item__content__poster">
+                                <img [src]="env.w500Image(slide.poster_path)" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+    </swiper>
+</div>
+
+<app-modal [active]="isActive" [videoSrc]="videoSrc" (close$)="hideModal()"></app-modal>
