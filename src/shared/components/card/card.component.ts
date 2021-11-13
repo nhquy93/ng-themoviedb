@@ -1,14 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MovieRes } from 'features/home/model/movie.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-movie-card',
-  templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  selector: 'app-card',
+  templateUrl: './card.component.html',
+  styleUrls: ['./card.component.scss']
 })
-export class MovieCardComponent implements OnInit {
-  @Input() movie = new MovieRes();
+export class CardComponent implements OnInit {
+  @Input() item: any
   btnIcon = `<i class="fa-solid fa-play"></i>`;
   env = environment.apiConfig;
 

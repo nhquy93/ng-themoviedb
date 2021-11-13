@@ -1,0 +1,7 @@
+<a href="#" data-toggle="tooltip" title="{{item.title || item.name}}">
+    <div class="item-card" [style]="bgImg(env.w500Image(item?.poster_path || item?.backdrop_path))">
+        <custom-button [btnClass]="'btn'" injectElement="{{btnIcon}}">
+        </custom-button>
+    </div>
+    <h3>{{ item.title || item.name }}</h3>
+</a>

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'shared/shared.module';
 import { ScrollToShrinkDirective } from 'shared/directives';
 import { HomeModule } from 'features/home/home.module';
+import { CatalogModule } from 'features/catalog/catalog.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HomeModule } from 'features/home/home.module';
     SharedModule,
 
     HomeModule,
+    CatalogModule
   ],
   providers: [
   ],

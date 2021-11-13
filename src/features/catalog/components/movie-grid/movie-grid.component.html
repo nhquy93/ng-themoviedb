@@ -1,0 +1,6 @@
+<div class="movie-grid">
+    <app-card [item]="item" *ngFor="let item of data"></app-card>
+</div>
+<div class="movie-grid__loadmore" *ngIf="currentPage < totalPages">
+    <custom-button btnClass="btn btn-outline small" injectElement="Load more..." (click)="loadMore()"></custom-button>
+</div>

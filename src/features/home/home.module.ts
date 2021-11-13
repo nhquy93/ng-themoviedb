@@ -7,14 +7,12 @@ import { MovieListComponent, MovieSlideComponent } from "./components";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 import { HomeService } from "./services/home.service";
-import { MovieCardComponent } from './components/movie-list/movie-card/movie-card.component';
 
 @NgModule({
     declarations: [
         HomeComponent,
         MovieSlideComponent,
-        MovieListComponent,
-        MovieCardComponent
+        MovieListComponent
     ],
     imports: [
         CommonModule,

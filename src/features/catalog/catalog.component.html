@@ -1,0 +1,9 @@
+<div class="catalog">
+    <app-page-header [category]="category"></app-page-header>
+    <div class="container">
+        <div class="section mb-3">
+            <app-movie-grid [data]="data" [currentPage]="currentPage" [totalPages]="totalPages"
+                (_loadMore$)="loadMore($event)"></app-movie-grid>
+        </div>
+    </div>
+</div>
