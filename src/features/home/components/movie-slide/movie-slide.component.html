@@ -10,8 +10,8 @@
                                 <h2 class="title">{{ slide.title }}</h2>
                                 <div class="overview">{{ slide.overview }}</div>
                                 <div class="btns">
-                                    <custom-button btnClass="btn" btnName="Watch Now"></custom-button>
-                                    <custom-button btnClass="btn btn-outline" btnName="Watch Trailer" (click)="showModal(slide.id)"></custom-button>
+                                    <custom-button btnClass="btn" injectElement="Watch Now"></custom-button>
+                                    <custom-button btnClass="btn btn-outline" injectElement="Watch Trailer" (click)="showModal(slide.id)"></custom-button>
                                 </div>
                             </div>
                             <div class="movie-slide__item__content__poster">

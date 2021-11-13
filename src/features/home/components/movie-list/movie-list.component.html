@@ -1,0 +1,9 @@
+<div class="movie-list">
+    <swiper [config]="config">
+        <ng-container *ngFor="let slide of data; let i = index">
+            <ng-template swiperSlide let-data>
+                <app-movie-card [movie]="slide"></app-movie-card>
+            </ng-template>
+        </ng-container>
+    </swiper>
+</div>

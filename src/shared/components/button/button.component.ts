@@ -7,7 +7,7 @@ import { Component, Input } from "@angular/core";
 })
 export class CustomButtonComponent {
     @Input() btnClass: string;
-    @Input() btnName: string;
+    @Input() injectElement: string;
 
     constructor() { }
 }

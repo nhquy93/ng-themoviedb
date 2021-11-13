@@ -8,6 +8,10 @@
     background-repeat: no-repeat;
     background-size: cover;
 
+    &::before {
+     opacity: 0.5;   
+    }
+
     &__content {
         max-width: 1000px;
 

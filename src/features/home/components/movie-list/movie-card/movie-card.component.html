@@ -1,0 +1,7 @@
+<a href="#" data-toggle="tooltip" title="{{movie.title}}">
+    <div class="movie-card" [ngStyle]="bgImg(env.w500Image(movie.poster_path || movie.backdrop_path))">
+        <custom-button [btnClass]="'btn'" injectElement="{{btnIcon}}">
+        </custom-button>
+    </div>
+    <h3>{{ movie.title }}</h3>
+</a>

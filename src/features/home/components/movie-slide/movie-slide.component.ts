@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Category } from 'shared/enums';
 import { environment } from 'src/environments/environment';
 import Swiper, { Autoplay, SwiperOptions } from 'swiper';
 import { MovieRes } from '../../model/movie.model';
@@ -63,7 +64,7 @@ export class MovieSlideComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   showModal(id: number) {
-    this.homeService.getTrailers(undefined, id);
+    this.homeService.getTrailers(Category.movie, id);
   }
 
   hideModal() {
