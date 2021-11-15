@@ -1,3 +1,6 @@
+<div class="section mb-3">
+    <app-search (_textSearch$)="onSearching($event)"></app-search>
+</div>
 <div class="movie-grid">
     <app-card [item]="item" *ngFor="let item of data"></app-card>
 </div>

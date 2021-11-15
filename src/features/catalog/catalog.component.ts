@@ -15,6 +15,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   data: MovieRes[] = [];
   currentPage: number;
   totalPages: number;
+  keyword: any;
   private subs: Subscription[];
 
   constructor(
@@ -23,6 +24,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ) {
     this._route.params.subscribe(param => {
       this.category = param;
+      this.keyword = undefined;
       this.data = [];
       switch (this.category['cateType']) {
         case Category.movie:
@@ -52,13 +54,33 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   loadMore(event: any) {
-    switch (this.category['cateType']) {
-      case Category.movie:
-        this.catService.fetchMovies(MovieType.upcoming, { page: event });
-        break;
-      default:
-        this.catService.fetchTvList(tvType.popular, { page: event });
-    };
+    if(!this.keyword) {
+      switch (this.category['cateType']) {
+        case Category.movie:
+          this.catService.fetchMovies(MovieType.upcoming, { page: event });
+          break;
+        default:
+          this.catService.fetchTvList(tvType.popular, { page: event });
+      };
+    } else {
+      this.catService.filterMoviesByQueryParams(this.category['cateType'], {page: event, query: this.keyword});
+    }
+  }
+
+  searchQuery(event: any) {
+    this.keyword = event;
+    if (!event) {
+      switch (this.category['cateType']) {
+        case Category.movie:
+          this.catService.fetchMovies(MovieType.upcoming, {});
+          break;
+        default:
+          this.catService.fetchTvList(tvType.popular, {});
+      };
+    } else {
+      this.data = [];
+      this.catService.filterMoviesByQueryParams(this.category['cateType'], {page: 1, query: event});
+    }
   }
 
   ngOnDestroy(): void {

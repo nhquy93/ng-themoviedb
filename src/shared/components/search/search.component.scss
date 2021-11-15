@@ -1,0 +1,20 @@
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+
+  input {
+    width: 100%;
+    padding: 8rem;
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+
+    i {
+      color: #ff1111;
+    }
+  }
+}

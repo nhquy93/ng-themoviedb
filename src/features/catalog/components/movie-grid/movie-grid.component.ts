@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { MovieRes } from 'features/home/model/movie.model';
 
 @Component({
@@ -11,6 +11,7 @@ export class MovieGridComponent implements OnInit, OnChanges {
   @Input() currentPage: number;
   @Input() totalPages: number;
   @Output() _loadMore$ = new EventEmitter<number>();
+  @Output() _searchQuery$ = new EventEmitter<any>();
 
   constructor() { }
 
@@ -22,6 +23,10 @@ export class MovieGridComponent implements OnInit, OnChanges {
 
   loadMore() {
     this._loadMore$.emit(this.currentPage + 1);
+  }
+
+  onSearching(event: any) {
+    this._searchQuery$.emit(event);
   }
 
 }

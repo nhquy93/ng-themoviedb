@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MovieRes } from "features/home/model/movie.model";
 import { Subject } from "rxjs";
+import { Category } from "shared/enums";
 import { environment } from "src/environments/environment";
 
 const dbUrl = environment.apiConfig.apiUrl;
@@ -44,4 +45,20 @@ export class CatalogService {
         })
     }
 
+    filterMoviesByQueryParams(type: string, params?) {
+        return this.http.get<any>(`${dbUrl}/search/${type}`, {
+            params: {
+                ...params,
+                api_key: apiKey
+            }
+        }).subscribe(response => {
+            if(type === Category.tv) {
+                this._tvSeries$.next(response?.results);
+            } else {
+                this._movies$.next(response?.results);
+            };
+            this._currentPage$.next(response?.page);
+            this._totalPages$.next(response?.total_pages);
+        })
+    }
 }

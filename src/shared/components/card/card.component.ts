@@ -16,9 +16,11 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  bgImg(url: any) {
+  bgImg(image: any) {
+    let _url = image ? this.env.w500Image(image) : 'assets/poster-not-found.png';
+    console.log(_url);
     return {
-      'background-image': `url(${url})`
+      'background-image': `url(${_url})`
     };
   }
 

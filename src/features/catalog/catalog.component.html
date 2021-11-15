@@ -3,7 +3,7 @@
     <div class="container">
         <div class="section mb-3">
             <app-movie-grid [data]="data" [currentPage]="currentPage" [totalPages]="totalPages"
-                (_loadMore$)="loadMore($event)"></app-movie-grid>
+                (_loadMore$)="loadMore($event)" (_searchQuery$)="searchQuery($event)"></app-movie-grid>
         </div>
     </div>
 </div>
