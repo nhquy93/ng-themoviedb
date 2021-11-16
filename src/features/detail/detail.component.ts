@@ -37,6 +37,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.subs = [
             this.detailService._detail$.subscribe(detail => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
                 this.detail = detail;
                 this.genres = detail?.genres?.slice(0, 5);
             }),
