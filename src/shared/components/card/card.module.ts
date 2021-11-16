@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { ButtonModule } from "../button/button.module";
 import { CardComponent } from "./card.component";
 
@@ -7,7 +8,8 @@ import { CardComponent } from "./card.component";
         CardComponent
     ],
     imports: [
-        ButtonModule
+        ButtonModule,
+        RouterModule
     ],
     exports: [
         CardComponent

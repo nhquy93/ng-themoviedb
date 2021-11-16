@@ -1,0 +1,6 @@
+<div class="casts">
+    <div class="casts__item" *ngFor="let cast of casts">
+        <div class="casts__item__img" [style]="bgImg(cast.profile_path)"></div>
+        <p class="casts__item__name">{{cast.name}}</p>
+    </div>
+</div>

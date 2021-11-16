@@ -2,7 +2,7 @@
     <app-page-header [category]="category"></app-page-header>
     <div class="container">
         <div class="section mb-3">
-            <app-movie-grid [data]="data" [currentPage]="currentPage" [totalPages]="totalPages"
+            <app-movie-grid [category]="category['cateType']" [data]="data" [currentPage]="currentPage" [totalPages]="totalPages"
                 (_loadMore$)="loadMore($event)" (_searchQuery$)="searchQuery($event)"></app-movie-grid>
         </div>
     </div>

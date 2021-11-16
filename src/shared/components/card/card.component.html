@@ -1,4 +1,4 @@
-<a href="#" data-toggle="tooltip" title="{{item.title || item.name}}">
+<a data-toggle="tooltip" title="{{item.title || item.name}}" (click)="gotoDetail(item.id)">
     <div class="item-card" [style]="bgImg(item?.poster_path || item?.backdrop_path)">
         <custom-button [btnClass]="'btn'" injectElement="{{btnIcon}}">
         </custom-button>

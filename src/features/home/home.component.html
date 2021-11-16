@@ -7,7 +7,7 @@
                 <custom-button [btnClass]="'btn btn-outline small'" injectElement="View more"></custom-button>
             </a>
         </div>
-        <app-movie-list [data]="movies"></app-movie-list>
+        <app-movie-list [category]="'movie'" [data]="movies"></app-movie-list>
     </div>
 
     <div class="section mb-3">
@@ -17,7 +17,7 @@
                 <custom-button [btnClass]="'btn btn-outline small'" injectElement="View more"></custom-button>
             </a>
         </div>
-        <app-movie-list [data]="topMovies"></app-movie-list>
+        <app-movie-list [category]="'movie'" [data]="topMovies"></app-movie-list>
     </div>
 
     <div class="section mb-3">
@@ -27,7 +27,7 @@
                 <custom-button [btnClass]="'btn btn-outline small'" injectElement="View more"></custom-button>
             </a>
         </div>
-        <app-movie-list [data]="tvSeries"></app-movie-list>
+        <app-movie-list [category]="'tv'" [data]="tvSeries"></app-movie-list>
     </div>
 
     <div class="section mb-3">
@@ -37,6 +37,6 @@
                 <custom-button [btnClass]="'btn btn-outline small'" injectElement="View more"></custom-button>
             </a>
         </div>
-        <app-movie-list [data]="topTvSeries"></app-movie-list>
+        <app-movie-list [category]="'tv'" [data]="topTvSeries"></app-movie-list>
     </div>
 </div>

@@ -1,0 +1,31 @@
+<div class="banner" [style]="bgImg(detail?.backdrop_path || detail?.poster_path, true)">
+</div>
+<div class="mb-3 movie-content container">
+    <div class="movie-content__poster">
+        <div class="movie-content__poster__img" [style]="bgImg(detail?.poster_path || detail?.backdrop_path, false)">
+        </div>
+    </div>
+    <div class="movie-content__info">
+        <h1 class="title">{{detail?.title || detail?.name}}</h1>
+        <div class="genres">
+            <span class="genres__item" *ngFor="let genre of genres">
+                {{ genre?.name }}
+            </span>
+        </div>
+        <p class="overview">{{detail?.overview}}</p>
+        <div class="cast">
+            <div class="section__header">
+                <h2>Casts</h2>
+            </div>
+            <app-cast-list [casts]="casts"></app-cast-list>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="section mb-3">
+        <app-video-list [videos]="videos"></app-video-list>
+    </div>
+    <div class="section mb-3">
+        <movie-list [category]="category" [data]="movies"></movie-list>
+    </div>
+</div>

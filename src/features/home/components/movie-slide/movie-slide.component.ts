@@ -56,8 +56,8 @@ export class MovieSlideComponent implements OnInit, OnChanges, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  bgImg(path: any): any {
-    const background = this.env.originalImage(path.backdrop_path ? path.backdrop_path : path.poster_path);
+  bgImg(image: any) {
+    const background = image ? this.env.originalImage(image) : 'assets/image-not-found.png';
     return {
       'background-image': `url(${background})`
     };

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category } from 'shared/enums';
 
 @Component({
   selector: 'app-page-header',

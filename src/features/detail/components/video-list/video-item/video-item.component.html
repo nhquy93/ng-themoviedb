@@ -1,0 +1,5 @@
+<div class="video__title">
+    <h2>{{video?.name}}</h2>
+</div>
+<iframe #iframeRef [src]="'https://www.youtube.com/embed/' + video?.key | safe" width="100%" title="video">
+</iframe>

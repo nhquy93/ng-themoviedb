@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Category, MovieType, tvType } from 'shared/enums';
+import { MovieType, tvType } from 'shared/enums';
 import { MovieRes } from './model/movie.model';
 import { HomeService } from './services/home.service';
 
@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   tvSeries: MovieRes[] = [];
   topTvSeries: MovieRes[] = [];
   private subs: Subscription[];
-  category = Category;
   movieType = MovieType;
   tvType = tvType;
 

@@ -4,11 +4,13 @@ import { CardModule } from "./components/card/card.module";
 import { ModalModule } from "./components/modal/modal.module";
 import { SearchModule } from "./components/search/search.module";
 import { DirectivesModule } from "./directives/directives.module";
+import { PipesModule } from "./pipes/pipes.module";
 
 const modules = [
-    ModalModule,
-    ButtonModule,
     CardModule,
+    ModalModule,
+    PipesModule,
+    ButtonModule,
     SearchModule,
     DirectivesModule
 ];

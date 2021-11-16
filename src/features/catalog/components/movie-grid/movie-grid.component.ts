@@ -8,6 +8,7 @@ import { MovieRes } from 'features/home/model/movie.model';
 })
 export class MovieGridComponent implements OnInit, OnChanges {
   @Input() data: MovieRes[] = [];
+  @Input() category: string;
   @Input() currentPage: number;
   @Input() totalPages: number;
   @Output() _loadMore$ = new EventEmitter<number>();

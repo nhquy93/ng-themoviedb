@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from 'shared/shared.module';
 import { HomeModule } from 'features/home/home.module';
 import { CatalogModule } from 'features/catalog/catalog.module';
+import { DetailModule } from 'features/detail/detail.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CatalogModule } from 'features/catalog/catalog.module';
     SharedModule,
 
     HomeModule,
-    CatalogModule
+    CatalogModule,
+    DetailModule
   ],
   providers: [
   ],
