@@ -10,12 +10,17 @@ import { SharedModule } from 'shared/shared.module';
 import { HomeModule } from 'features/home/home.module';
 import { CatalogModule } from 'features/catalog/catalog.module';
 import { DetailModule } from 'features/detail/detail.module';
+import { LoginComponent } from './components/login/login.component';
+import { configOAuthGoogle } from 'src/environments/environment';
+
+const CLIENT_ID = configOAuthGoogle.clientId;
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,10 +30,11 @@ import { DetailModule } from 'features/detail/detail.module';
 
     HomeModule,
     CatalogModule,
-    DetailModule
+    DetailModule,
   ],
   providers: [
+    
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

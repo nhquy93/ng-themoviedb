@@ -7,3 +7,9 @@ export const environment = {
     w500Image: (imgPath: string) => `https://image.tmdb.org/t/p/w500/${imgPath}`
   }
 };
+
+export const configOAuthGoogle = {
+  clientId:
+    '552213338758-b80960vcdvop6o0anc6o7d1i6omfcu1n.apps.googleusercontent.com',
+  clientSecret: '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',
+};
