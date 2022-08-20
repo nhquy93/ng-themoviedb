@@ -1,4 +1,17 @@
-<button type="button"
-        class="login-with-google-btn">
-  Sign in with Google
-</button>
+<div class="modal-header">
+  <h5 class="modal-title">{{title}}</h5>
+  <button type="button"
+          class="btn-close"
+          aria-label="Close"
+          (click)="modalRef.close()"></button>
+</div>
+<div class="modal-body">
+  <button type="button"
+          class="login-with-google-btn"
+          (click)="signInWithGoogle()">
+    Sign in with Google
+  </button>
+</div>
+<!-- <div class="modal-footer">
+
+</div> -->

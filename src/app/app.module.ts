@@ -10,6 +10,7 @@ import { SharedModule } from 'shared/shared.module';
 import { HomeModule } from 'features/home/home.module';
 import { CatalogModule } from 'features/catalog/catalog.module';
 import { DetailModule } from 'features/detail/detail.module';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { LoginComponent } from './components/login/login.component';
 import { configOAuthGoogle } from 'src/environments/environment';
 
@@ -26,6 +27,7 @@ const CLIENT_ID = configOAuthGoogle.clientId;
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    MdbModalModule,
     SharedModule,
 
     HomeModule,
