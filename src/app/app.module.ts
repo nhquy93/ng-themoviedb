@@ -12,9 +12,8 @@ import { CatalogModule } from 'features/catalog/catalog.module';
 import { DetailModule } from 'features/detail/detail.module';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { LoginComponent } from './components/login/login.component';
-import { configOAuthGoogle } from 'src/environments/environment';
-
-const CLIENT_ID = configOAuthGoogle.clientId;
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { GoogleApiService } from 'src/app/services/google-api.service';
 
 @NgModule({
   declarations: [
@@ -30,13 +29,13 @@ const CLIENT_ID = configOAuthGoogle.clientId;
     MdbModalModule,
     SharedModule,
 
+    OAuthModule.forRoot(),
+
     HomeModule,
     CatalogModule,
     DetailModule,
   ],
-  providers: [
-    
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

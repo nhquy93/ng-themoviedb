@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MovieType, tvType } from 'shared/enums';
+import { GoogleApiService } from 'src/app/services/google-api.service';
 import { MovieRes } from './model/movie.model';
 import { HomeService } from './services/home.service';
 
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   tvType = tvType;
 
   constructor(
+    private readonly googleApi: GoogleApiService,
     private homeService: HomeService
   ) { }
 
@@ -42,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.homeService._topTvSeries$.subscribe(res => {
         this.topTvSeries = res;
       }),
+      this.googleApi.userGoogle.subscribe((user) => console.log(user))
     ]
   }
 
