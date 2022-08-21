@@ -9,7 +9,7 @@ const oAuthConfig: AuthConfig = {
   redirectUri: window.location.origin,
   clientId: configOAuthGoogle.clientId,
   scope: configOAuthGoogle.scope,
-  // useSilentRefresh: true
+  preserveRequestedRoute: true
 };
 
 @Injectable({
@@ -21,7 +21,6 @@ export class GoogleApiService {
   constructor(
     private readonly oAuthService: OAuthService) {
     oAuthService.configure(oAuthConfig);
-    // oAuthService.setupAutomaticSilentRefresh();
   }
 
   signInWithGoogle() {
@@ -33,7 +32,7 @@ export class GoogleApiService {
           this.oAuthService.loadUserProfile().then((userProfile) => {
             
             console.log(JSON.stringify(userProfile));
-            // this.userGoogle.next(userProfile);
+            this.userGoogle.next(userProfile);
           });
         }
       });
