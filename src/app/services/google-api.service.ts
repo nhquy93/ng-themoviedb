@@ -1,41 +1,63 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { configOAuthGoogle } from 'src/environments/environment';
 
 const oAuthConfig: AuthConfig = {
   issuer: configOAuthGoogle.issuerUri,
   strictDiscoveryDocumentValidation: false,
-  redirectUri: window.location.origin,
+  redirectUri: window.location.origin + '/home',
   clientId: configOAuthGoogle.clientId,
   scope: configOAuthGoogle.scope,
-  preserveRequestedRoute: true
+  clearHashAfterLogin: false,
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class GoogleApiService {
-  userGoogle = new Subject();
+  claims: any;
+  isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
   constructor(
-    private readonly oAuthService: OAuthService) {
+    private router: Router,
+    private readonly oAuthService: OAuthService
+  ) {
     oAuthService.configure(oAuthConfig);
+    this.signInWithGoogle();
   }
 
   signInWithGoogle() {
-    return this.oAuthService.loadDiscoveryDocument().then(() => {
-          this.oAuthService.tryLoginImplicitFlow().then(() => {
+    if (!this.isLoggedIn) {
+      this.oAuthService.loadDiscoveryDocument().then(() => {
+        this.oAuthService.tryLoginImplicitFlow().then(() => {
           if (!this.oAuthService.hasValidAccessToken()) {
-          this.oAuthService.initLoginFlow();
-        } else {
-          this.oAuthService.loadUserProfile().then((userProfile) => {
-            
-            console.log(JSON.stringify(userProfile));
-            this.userGoogle.next(userProfile);
-          });
-        }
+            this.oAuthService.initLoginFlow();
+          } else {
+            this.oAuthService.loadUserProfile().then((user) => {
+              console.log(user);
+              this.router.navigateByUrl('home');
+            });
+          }
+        });
       });
-    });
+    }
+    this.isLoggedIn$.next(true);
+  }
+
+  signOut() {
+    console.log('Sign Out');
+    this.isLoggedIn$.next(false);
+    this.oAuthService.logOut();
+  }
+
+  get isLoggedIn() {
+    return !!this.oAuthService.getIdToken();
+  }
+
+  get token() {
+    this.claims = this.oAuthService.getIdentityClaims();
+    return this.claims ? this.claims : null;
   }
 }

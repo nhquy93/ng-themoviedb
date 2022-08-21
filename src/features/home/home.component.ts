@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MovieType, tvType } from 'shared/enums';
 import { GoogleApiService } from 'src/app/services/google-api.service';
@@ -8,7 +9,7 @@ import { HomeService } from './services/home.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   movies: MovieRes[] = [];
@@ -20,10 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   movieType = MovieType;
   tvType = tvType;
 
-  constructor(
-    private readonly googleApi: GoogleApiService,
-    private homeService: HomeService
-  ) { }
+  constructor(private homeService: HomeService) {}
 
   ngOnInit(): void {
     this.homeService.fetchMovies(MovieType.popular);
@@ -31,24 +29,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.homeService.fetchTvList(tvType.popular);
     this.homeService.fetchTvList(tvType.top_rated);
     this.subs = [
-      this.homeService._movies$.subscribe(res => {
+      this.homeService._movies$.subscribe((res) => {
         this.hotMovies = res.slice(0, 4);
         this.movies = res;
       }),
-      this.homeService._topMovies$.subscribe(res => {
+      this.homeService._topMovies$.subscribe((res) => {
         this.topMovies = res;
       }),
-      this.homeService._tvSeries$.subscribe(res => {
+      this.homeService._tvSeries$.subscribe((res) => {
         this.tvSeries = res;
       }),
-      this.homeService._topTvSeries$.subscribe(res => {
+      this.homeService._topTvSeries$.subscribe((res) => {
         this.topTvSeries = res;
       }),
-      this.googleApi.userGoogle.subscribe((user) => console.log(user))
-    ]
+    ];
   }
 
   ngOnDestroy(): void {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subs.forEach((sub) => sub.unsubscribe());
   }
 }

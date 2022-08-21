@@ -15,8 +15,10 @@
                    routerLinkActive="active">Movies</a></li>
             <li><a routerLink="/tv"
                    routerLinkActive="active">TV Series</a></li>
-            <li><a routerLink=""
+            <li *ngIf="!isLoggedIn"><a routerLink=""
                    (click)="openModal()">Login</a></li>
+            <li *ngIf="isLoggedIn"><a routerLink=""
+                   (click)="signOut()">Logout</a></li>
         </ul>
     </div>
 </div>

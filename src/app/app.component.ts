@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { GoogleApiService } from 'src/app/services/google-api.service';
+import { configOAuthGoogle } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -26,11 +28,15 @@ export class AppComponent {
 
   constructor(
     private readonly googleApi: GoogleApiService,
-    private modalService: MdbModalService) {
-    googleApi.userGoogle.subscribe((user)=> console.log(user));
-  }
+    private modalService: MdbModalService,
+    ) {}
 
   openModal() {
     this.modalRef = this.modalService.open(LoginComponent, this.config);
+    this.modalRef.onClose.subscribe(isSignIn => {
+      if(isSignIn) {
+        this.googleApi.signInWithGoogle();
+      }
+    })
   }
 }

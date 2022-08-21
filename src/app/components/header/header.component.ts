@@ -1,4 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { UserInfo } from 'src/app/models/user-info.model';
+import { GoogleApiService } from 'src/app/services/google-api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,22 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() emitter = new EventEmitter();
+  isLoggedIn: boolean = false;
 
-  constructor() {}
+  constructor(private readonly googleApi: GoogleApiService) {
+    googleApi.isLoggedIn$.subscribe((isLoggedIn) => {
+      console.log(isLoggedIn);
+      this.isLoggedIn = isLoggedIn
+    });
+  }
 
   ngOnInit(): void {}
 
   openModal() {
     this.emitter.emit();
+  }
+
+  signOut(): void {
+    this.googleApi.signOut();
   }
 }

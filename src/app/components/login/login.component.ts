@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MdbModalRef } from 'mdb-angular-ui-kit/modal';
-import { GoogleApiService } from 'src/app/services/google-api.service';
 
 @Component({
   selector: 'app-login',
@@ -10,16 +9,11 @@ import { GoogleApiService } from 'src/app/services/google-api.service';
 export class LoginComponent implements OnInit {
   title: String | null;
 
-  constructor(
-    public modalRef: MdbModalRef<LoginComponent>,
-    private readonly googleApi: GoogleApiService
-  ) {}
+  constructor(public modalRef: MdbModalRef<LoginComponent>) {}
 
   ngOnInit(): void {}
 
   signInWithGoogle() {
-    this.googleApi.signInWithGoogle();
+    this.modalRef.close(true);
   }
-
-  signOut() {}
 }
