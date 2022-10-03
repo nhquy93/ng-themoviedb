@@ -3,7 +3,6 @@ import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { LoginComponent } from 'src/app/components/login/login.component';
 import { GoogleApiService } from 'src/app/services/google-api.service';
-import { configOAuthGoogle } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',

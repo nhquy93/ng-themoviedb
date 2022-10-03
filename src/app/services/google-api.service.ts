@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { BehaviorSubject } from 'rxjs';
 import { configOAuthGoogle } from 'src/environments/environment';
 
@@ -13,9 +14,7 @@ const oAuthConfig: AuthConfig = {
   clearHashAfterLogin: false,
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class GoogleApiService {
   claims: any;
   isLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -25,31 +24,35 @@ export class GoogleApiService {
     private readonly oAuthService: OAuthService
   ) {
     oAuthService.configure(oAuthConfig);
-    this.signInWithGoogle();
+    oAuthService.tokenValidationHandler = new JwksValidationHandler();
+    oAuthService.loadDiscoveryDocumentAndTryLogin();
   }
 
-  signInWithGoogle() {
+  async signInWithGoogle() {
+    console.log(this.isLoggedIn);
     if (!this.isLoggedIn) {
       this.oAuthService.loadDiscoveryDocument().then(() => {
         this.oAuthService.tryLoginImplicitFlow().then(() => {
           if (!this.oAuthService.hasValidAccessToken()) {
-            this.oAuthService.initLoginFlow();
-          } else {
-            this.oAuthService.loadUserProfile().then((user) => {
-              console.log(user);
-              this.router.navigateByUrl('home');
-            });
+            this.oAuthService.initCodeFlow();
           }
         });
       });
+    } else {
+      const user = await this.oAuthService.loadUserProfile();
+      if(user) {
+        console.log(user);
+        this.isLoggedIn$.next(true);
+      }
     }
-    this.isLoggedIn$.next(true);
   }
 
   signOut() {
     console.log('Sign Out');
-    this.isLoggedIn$.next(false);
     this.oAuthService.logOut();
+    this.oAuthService.revokeTokenAndLogout();
+    this.isLoggedIn$.next(false);
+    sessionStorage.clear();
   }
 
   get isLoggedIn() {
