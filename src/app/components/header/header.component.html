@@ -15,10 +15,13 @@
                    routerLinkActive="active">Movies</a></li>
             <li><a routerLink="/tv"
                    routerLinkActive="active">TV Series</a></li>
-            <li *ngIf="!isLoggedIn"><a routerLink=""
-                   (click)="openModal()">Login</a></li>
-            <li *ngIf="isLoggedIn"><a routerLink=""
-                   (click)="signOut()">Logout</a></li>
+            <li *ngIf="!user"><a routerLink=""
+                   (click)="openLogin()">Login</a></li>
+            <!-- <li *ngIf="isLoggedIn"><a routerLink=""
+                   (click)="signOut()">Logout</a></li> -->
+       <li *ngIf="user" (click)="openProfile()" style="cursor: pointer;">
+              <img [src]="avatar" width="50px" height="50px"  class="avatar"/>
+       </li>
         </ul>
     </div>
 </div>

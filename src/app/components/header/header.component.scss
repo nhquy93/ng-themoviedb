@@ -8,7 +8,9 @@
   width: 100%;
   transition: height .3s ease, background-color .3s ease;
   z-index: 999;
-
+  .avatar{
+    border-radius: 50%;
+  }
   &__logo {
     font-size: 2.5rem;
     font-weight: 600;

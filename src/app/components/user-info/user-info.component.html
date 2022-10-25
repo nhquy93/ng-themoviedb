@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h5 class="modal-title">{{title}}</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+  </div>
+  <div class="modal-body">
+    <div><img [src]="avatar" width="50px" height="50px"/></div>
+    <table width="100%" class="table-profile">
+        <tr style="color: black;">
+            <td width="30%">First Name:</td>
+            <td width="70%">{{user?.firstName}}</td>
+        </tr>
+        <tr>
+            <td width="30%">Last Name:</td>
+            <td width="70%">{{user?.lastName}}</td>
+        </tr>
+        <tr>
+            <td width="30%">Provider:</td>
+            <td width="70%">{{user?.provider}}</td>
+        </tr>
+        <tr>
+            <td width="30%">Email:</td>
+            <td width="70%">{{user?.email}}</td>
+        </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="button-85" (click)="logOut()" >Log out</button>
+  </div>
